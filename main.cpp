@@ -1,32 +1,13 @@
 #include <iostream>
 #include <string>
-#include <mutex>
-#include <thread>
 #include <chrono>
-#include <queue>
 #include <cmath>
 #include <atomic>
 #include "parallel_util.h"
-using namespace std;
+
 #define NUM_THREADS 4
 #define MAX_QUEUE_SIZE 100
-int N = 4000;
-int cell_size = 10;
-int max_t = 100;
-int middle = N / 2;
-double W = 5000 * 1e6;
 
-double c[] = {
-    2.611369,
-    -1.690128,
-    0.00805,
-    0.336743,
-    -0.005162,
-    -0.080923,
-    -0.004785,
-    0.007930,
-    0.000768
-};
 
 using namespace std;
 double calculateU(double Z){

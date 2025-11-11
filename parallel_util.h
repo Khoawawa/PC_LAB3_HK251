@@ -10,13 +10,13 @@
 #include <chrono>
 #include <stdio.h>
 #include <atomic>
-int N = 4000;
-int cell_size = 10;
-int max_t = 100;
-int middle = N / 2;
-double W = 5000 * 1e6;
+const int N = 4000;
+const int cell_size = 10;
+const int max_t = 100;
+const int middle = N / 2;
+const double W = 5000 * 1e6;
 
-double c[] = {
+const double c[] = {
     2.611369,
     -1.690128,
     0.00805,
