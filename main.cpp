@@ -1,6 +1,5 @@
 #include <iostream>
 #include <mutex>
-#include <thread>
 #include <chrono>
 #include <queue>
 #include <string>
@@ -108,13 +107,16 @@ double parallel_sim(double** grid, double** dist_grid) {
     clock_t start = clock();
     // Enqueue tasks for each time step
     for (int t = 1; t <= max_t; t++) {
-        for (int i = 0; i < N; i += ROWS_PER_TASK) {
-            double max_R = t * 343;
-            int end_row = min(i + ROWS_PER_TASK - 1, N - 1); // Inclusive end
-            queue.enqueue(new Task(i, end_row, t, max_R, previous_R));
-            previous_R = max_R;
+        double max_R = t * 343;
+        queue.enqueue(new Task(0, N - 1, t, max_R, previous_R));
+        previous_R = max_R;
+        // for (int i = 0; i < N; i += ROWS_PER_TASK) {
+        //     double max_R = t * 343;
+        //     int end_row = min(i + ROWS_PER_TASK - 1, N - 1); // Inclusive end
+        //     queue.enqueue(new Task(i, end_row, t, max_R, previous_R));
+        //     previous_R = max_R;
 
-        }
+        // }
     }
     // Ensure all tasks are done before shutdown
     queue.setShutdown();
