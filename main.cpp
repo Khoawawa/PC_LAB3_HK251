@@ -10,7 +10,7 @@
 #include <fstream>
 #include "parallel_util.h"
 
-#define NUM_THREADS 4
+#define NUM_THREADS 2
 #define MAX_QUEUE_SIZE 100
 int ROWS_PER_TASK = N;
 

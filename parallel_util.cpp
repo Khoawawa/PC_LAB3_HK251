@@ -58,9 +58,17 @@ void Worker::run() {
         delete task;
     }
 }
+void pinThreadToCore(int core_id) {
+    cpu_set_t cpuset;
+    CPU_ZERO(&cpuset);
+    CPU_SET(core_id, &cpuset);
 
+    pthread_t current_thread = pthread_self();
+    pthread_setaffinity_np(current_thread, sizeof(cpu_set_t), &cpuset);
+}
 Worker::Worker(int id, TaskQueue& q, double** g, double** d)
     : id(id), queue(q), grid(g), dist_grid(d){
+    pinThreadToCore(id);
     t = std::thread(&Worker::run, this);
 }
 

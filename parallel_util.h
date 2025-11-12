@@ -3,6 +3,8 @@
 
 #include <mutex>
 #include <vector>
+#include <pthread.h>
+#include <sched.h>
 #include <queue>
 #include <thread>
 #include <condition_variable>
